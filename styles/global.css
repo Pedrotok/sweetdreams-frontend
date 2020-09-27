@@ -1,0 +1,31 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply font-bold py-2 px-4 rounded;
+  }
+  
+  .input-field {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight
+  }
+  
+  .input-field:focus {
+    @apply outline-none shadow-outline
+  }
+}
+
+@layer utilities {
+  .max-w-xxs {
+    max-width: 15rem;
+  }
+}
