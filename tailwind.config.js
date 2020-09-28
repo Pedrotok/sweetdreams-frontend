@@ -11,7 +11,7 @@ module.exports = {
       xl: '1280px',
     },
     fontFamily: {
-      sans: ['Lato', 'sans-serif'],
+      sans: ['Montserrat', 'Lato', 'sans-serif'],
     },
     borderWidth: {
       default: '1px',
@@ -22,13 +22,15 @@ module.exports = {
     extend: {
       colors: {
         cyan: '#9cdbff',
+        indigo: '#43464d',
+        darkblue: '#0d1c26',
       },
       spacing: {
         '96': '24rem',
         '128': '32rem',
-      }
-    }
+      },
+    },
   },
   variants: {},
   plugins: [],
-}
+};
