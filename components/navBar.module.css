@@ -1,8 +1,15 @@
 @layer components {
   .menuItem {
-    @apply block mr-4 inline-block text-indigo text-xs;
+    @apply block mr-4 inline-block text-indigo text-s tracking-wider opacity-75 font-medium uppercase;
   }
   .menuItem:hover {
-    @apply text-darkblue underline;
+    @apply text-darkblue underline opacity-100;
   }
+}
+
+@layer utilities {
+  .text-s {
+    font-size: 13px;
+  }
+
 }
