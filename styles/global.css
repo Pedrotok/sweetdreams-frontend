@@ -29,3 +29,15 @@
     max-width: 15rem;
   }
 }
+
+.carousel-slider {
+  max-height: 850px;
+}
+
+.carousel.carousel-slider:hover .control-arrow:hover {
+  background-color: transparent;
+}
+
+.carousel .control-dots .dot{
+  outline: none;
+}

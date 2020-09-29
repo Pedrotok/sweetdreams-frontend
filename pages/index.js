@@ -1,7 +1,7 @@
-import ProductSlick from "components/productSlick";
+import Carousel from "components/carousel";
 
 export default function Index() {
   return (
-    <ProductSlick />
+    <Carousel />
   );
 }
