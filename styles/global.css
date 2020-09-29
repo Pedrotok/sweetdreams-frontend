@@ -51,7 +51,7 @@
 }
 
 .carousel-slider {
-  height: 870px;
+  height: auto;
 }
 
 .carousel.carousel-slider:hover .control-arrow:hover {
