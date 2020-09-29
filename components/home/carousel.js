@@ -2,7 +2,7 @@ import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel as ReactCarousel } from 'react-responsive-carousel';
 
-import './carousel.module.css';
+// import 'styles/carousel.css';
 
 function Carousel() {
 

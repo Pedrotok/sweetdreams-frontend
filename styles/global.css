@@ -11,8 +11,14 @@
   h2 {
     @apply text-2xl font-normal text-darkblue;
   }
+  h3 {
+    @apply text-xl font-normal text-darkblue;
+  }
   body {
     @apply bg-white;
+  }
+  p {
+    @apply text-darkblue;
   }
 }
 
@@ -45,7 +51,7 @@
 }
 
 .carousel-slider {
-  max-height: 850px;
+  height: 870px;
 }
 
 .carousel.carousel-slider:hover .control-arrow:hover {
