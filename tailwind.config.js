@@ -22,7 +22,7 @@ module.exports = {
     extend: {
       colors: {
         cyan: '#9cdbff',
-        indigo: '#43464d',
+        indigo: '#333333',
         darkblue: '#1a1b1f',
       },
       spacing: {
