@@ -8,7 +8,7 @@ export default function ProductItem({ product }) {
         <div className="text-sm text-center">
           <p>{product.name.toUpperCase()}</p>
           <p className="font-bold">
-            R$ {product.price}
+            R$ {product.price.toFixed(2)}
           </p>
         </div>
       </div>
