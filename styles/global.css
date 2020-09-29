@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+  h1 {
+    @apply text-3xl font-normal text-darkblue;
+  }
+  h2 {
+    @apply text-2xl font-normal text-darkblue;
+  }
   body {
     @apply bg-white;
   }
@@ -27,5 +33,13 @@
 @layer utilities {
   .max-w-xxs {
     max-width: 15rem;
+  }
+
+  .min-w-sm {
+    min-width: 16rem;
+  }
+
+  .h-2px {
+    height: 2px;
   }
 }
