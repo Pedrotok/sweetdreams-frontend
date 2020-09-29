@@ -15,7 +15,7 @@ function NavBar(props) {
       />
       <button
         className="bg-white w-auto flex justify-end items-center text-blue-500 p-2 hover:text-blue-400"
-        onClick={() => { }}
+        onClick={() => {}}
       >
         <Search />
       </button>
@@ -40,16 +40,16 @@ function NavBar(props) {
           <a className={styles.menuItem}>Login</a>
         </Link>
       ) : (
-          <a
-            className={styles.menuItem}
-            onClick={(e) => {
-              e.preventDefault();
-              props.logout();
-            }}
-          >
-            LOGOUT
-          </a>
-        )}
+        <a
+          className={styles.menuItem}
+          onClick={(e) => {
+            e.preventDefault();
+            props.logout();
+          }}
+        >
+          LOGOUT
+        </a>
+      )}
     </div>
   );
 
@@ -57,11 +57,11 @@ function NavBar(props) {
     <Link href="/cart">
       <a className="border-l-2 border-gray-200 px-4 ml-4">
         <ShoppingCartOutlinedIcon />
-        {props.cartSize > 0 &&
+        {props.cartSize > 0 && (
           <span className="tag is-primary" style={{ marginLeft: '5px' }}>
             {props.cartSize}
           </span>
-        }
+        )}
       </a>
     </Link>
   );
@@ -72,7 +72,7 @@ function NavBar(props) {
         <Logo />
         <div className=" flex items-center ml-auto">
           {navBarLinks}
-          {searchBar}
+          {/* {searchBar} */}
           {cartIcon}
         </div>
       </div>
