@@ -10,6 +10,7 @@ const StyledBadge = withStyles((theme) => ({
     top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
+    backgroundColor: '#f26d6d',
   },
 }))(Badge);
 
@@ -18,9 +19,9 @@ export default function ShoppingCart({ cartSize }) {
     <Link href="/cart">
       <a className="border-l border-gray-300 px-4">
         <IconButton style={{ outline: 'none' }}>
-          <Badge badgeContent={cartSize} color="secondary">
+          <StyledBadge badgeContent={cartSize} color="secondary">
             <ShoppingCartOutlinedIcon />
-          </Badge>
+          </StyledBadge>
         </IconButton>
       </a>
     </Link>

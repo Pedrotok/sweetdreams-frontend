@@ -1,3 +1,5 @@
+// prettier-ignore
+
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -25,6 +27,9 @@ module.exports = {
         cyan: '#9cdbff',
         indigo: '#333333',
         darkblue: '#1a1b1f',
+        nicered: '#f26d6d',
+        happyyellow: '#f2d680',
+        darkerblue: '#0d1626',
       },
       spacing: {
         '96': '24rem',

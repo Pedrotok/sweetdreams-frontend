@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Icon() {
+function MoonIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       style={{ isolation: 'isolate' }}
-      width="46.6776"
-      height="52.6072"
+      width="22"
+      height="30"
       viewBox="892.101 271.093 175.041 197.277"
     >
       <defs>
@@ -44,4 +44,4 @@ function Icon() {
   );
 }
 
-export default Icon;
+export default MoonIcon;

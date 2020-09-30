@@ -69,9 +69,9 @@ function NavBar(props) {
   );
 
   return (
-    <nav className="px-8 border-b border-gray-300">
+    <nav className="px-8 border-b border-grey-300">
       <div className="flex items-center p-4">
-        {/* <MoonIcon /> */}
+        <MoonIcon />
         <Logo />
         <div className=" flex items-center ml-auto">
           {navBarLinks}

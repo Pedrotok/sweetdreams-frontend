@@ -17,6 +17,7 @@ export default function Products(props) {
             products.map((product, index) => (
               <ProductItem
                 product={product}
+                key={index}
               />
             ))
           ) : (
