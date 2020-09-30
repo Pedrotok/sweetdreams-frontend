@@ -17,16 +17,16 @@ const inputNumber = (
 export default function Product({ product }) {
   console.log(product);
   return (
-    <div className="mx-20 my-5">
-      <div className="inline-block mr-10">
+    <div className="flex justify-center mx-20 my-5">
+      <div className="inline-block ml-auto mr-10">
         <img className="min-w-sm max-w-sm m-auto" src={product.imageUrl} alt={product.description} />
       </div>
-      <div className="inline-block ml-10 align-top mx-auto">
+      <div className="inline-block ml-10 align-top mr-auto">
         <h1 className="mb-1">{product.name}</h1>
         <h2 className="text-opacity-75">R$ {product.price.toFixed(2)}</h2>
         <div className="my-5 h-2px w-12 bg-black"></div>
         <div className="text-opacity-50 text-darkblue text-base">
-          {product.description}
+          <p className="max-w-sm">{product.description}</p>
         </div>
         <div className="my-3 space-y-4">
           <Dropdown title="Size" handleChange={() => { }} optionsList={[{ value: 'S', text: 'S' }, { value: 'M', text: 'M' }]} />
