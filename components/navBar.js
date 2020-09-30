@@ -69,7 +69,7 @@ function NavBar(props) {
   );
 
   return (
-    <nav className="mx-8 my-4">
+    <nav className="px-8 border-b border-gray-300">
       <div className="flex items-center p-4">
         {/* <MoonIcon /> */}
         <Logo />
