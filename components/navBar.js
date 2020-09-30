@@ -5,6 +5,7 @@ import Logo from 'public/logo';
 import ShoppingCart from 'components/common/shoppingCart';
 
 import styles from './navBar.module.css';
+import MoonIcon from 'public/icons/moonIcon';
 
 function NavBar(props) {
   const searchBar = (
@@ -70,6 +71,7 @@ function NavBar(props) {
   return (
     <nav className="mx-8 my-4">
       <div className="flex items-center p-4">
+        {/* <MoonIcon /> */}
         <Logo />
         <div className=" flex items-center ml-auto">
           {navBarLinks}

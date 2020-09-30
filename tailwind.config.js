@@ -12,6 +12,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Montserrat', 'Lato', 'sans-serif'],
+      logo: ['Poppins', 'Montserrat', 'Lato', 'sans-serif'],
     },
     borderWidth: {
       default: '1px',
