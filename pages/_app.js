@@ -1,11 +1,10 @@
-import App from "next/app";
-import NavBar from "components/navBar";
-import MainFooter from "components/mainFooter"
-import data from "data";
-import Context from "Context";
+import App from 'next/app';
+import NavBar from 'components/navBar';
+import MainFooter from 'components/mainFooter';
+import data from 'data';
+import Context from 'Context';
 
-
-import 'styles/global.css'
+import 'styles/global.css';
 
 class MainApp extends App {
   constructor(props) {
@@ -13,18 +12,18 @@ class MainApp extends App {
     this.state = {
       cart: {},
       user: null,
-      products: []
+      products: [],
     };
   }
 
   addProduct = (product, callback) => {
     let products = this.state.products.slice();
     products.push(product);
-    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.setItem('products', JSON.stringify(products));
     this.setState({ products }, () => callback && callback());
   };
 
-  addToCart = cartItem => {
+  addToCart = (cartItem) => {
     let cart = this.state.cart;
     if (cart[cartItem.id]) {
       cart[cartItem.id].amount += cartItem.amount;
@@ -34,20 +33,20 @@ class MainApp extends App {
     if (cart[cartItem.id].amount > cart[cartItem.id].product.stock) {
       cart[cartItem.id].amount = cart[cartItem.id].product.stock;
     }
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
     this.setState({ cart });
   };
 
-  removeFromCart = cartItemId => {
+  removeFromCart = (cartItemId) => {
     let cart = this.state.cart;
     delete cart[cartItemId];
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
     this.setState({ cart });
   };
 
   clearCart = () => {
     let cart = {};
-    localStorage.removeItem("cart");
+    localStorage.removeItem('cart');
     this.setState({ cart });
   };
 
@@ -56,7 +55,7 @@ class MainApp extends App {
       return;
     }
     const cart = this.state.cart;
-    const products = this.state.products.map(p => {
+    const products = this.state.products.map((p) => {
       if (cart[p.name]) {
         p.stock = p.stock - cart[p.name].amount;
       }
@@ -67,10 +66,9 @@ class MainApp extends App {
   };
 
   componentDidMount() {
-    let user = localStorage.getItem("user");
-    let products = localStorage.getItem("products");
-    let cart = localStorage.getItem("cart");
-
+    let user = localStorage.getItem('user');
+    let products = localStorage.getItem('products');
+    let cart = localStorage.getItem('cart');
 
     products = products ? JSON.parse(products) : data.initProducts;
     user = user ? JSON.parse(user) : null;
@@ -80,10 +78,10 @@ class MainApp extends App {
   }
 
   login = (usn, pwd) => {
-    let user = data.users.find(u => u.username === usn && u.password === pwd);
+    let user = data.users.find((u) => u.username === usn && u.password === pwd);
     if (user) {
       this.setState({ user });
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
       return true;
     }
     return false;
@@ -91,7 +89,7 @@ class MainApp extends App {
 
   logout = () => {
     this.setState({ user: null });
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
   };
 
   render() {
@@ -105,7 +103,7 @@ class MainApp extends App {
           login: this.login,
           addProduct: this.addProduct,
           clearCart: this.clearCart,
-          checkout: this.checkout
+          checkout: this.checkout,
         }}
       >
         <NavBar
