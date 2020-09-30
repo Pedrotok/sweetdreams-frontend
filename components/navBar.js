@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Search from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import Logo from 'public/logo';
+import ShoppingCart from 'components/common/shoppingCart';
 
 import styles from './navBar.module.css';
 
@@ -73,7 +74,7 @@ function NavBar(props) {
         <div className=" flex items-center ml-auto">
           {navBarLinks}
           {/* {searchBar} */}
-          {cartIcon}
+          <ShoppingCart cartSize={props.cartSize} />
         </div>
       </div>
     </nav>

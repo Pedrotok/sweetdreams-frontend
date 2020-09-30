@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -58,6 +59,13 @@
   background-color: transparent;
 }
 
-.carousel .control-dots .dot{
+.carousel .control-dots .dot {
   outline: none;
+}
+
+.MuiBadge-anchorOriginTopRightRectangle {
+  right: -3px !important;
+  top: 11px !important;
+  border: 2px solid white;
+  padding: 0 4px !important;
 }
