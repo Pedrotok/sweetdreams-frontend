@@ -35,6 +35,18 @@
   .input-field:focus {
     @apply outline-none shadow-outline;
   }
+
+  .footer-text {
+    @apply text-lightblue text-sm text-opacity-75;
+  }
+
+  .footer-link {
+    @apply footer-text;
+  }
+
+  .footer-link:hover {
+    @apply text-happyyellow text-opacity-100 underline;
+  }
 }
 
 @layer utilities {

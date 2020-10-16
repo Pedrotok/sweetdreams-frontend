@@ -30,6 +30,7 @@ module.exports = {
         nicered: '#f26d6d',
         happyyellow: '#f2d680',
         darkerblue: '#0d1626',
+        lightblue: '#c1cec9',
       },
       spacing: {
         '96': '24rem',
