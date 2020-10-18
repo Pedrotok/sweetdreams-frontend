@@ -13,22 +13,35 @@ const validate = values => {
   return errors;
 };
 
-export default function SignIn() {
+export default function SignUp() {
   const formik = useFormik({
     initialValues: {
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     },
     validate,
-    onSubmit: async values => {
-      await authenticate(values.email, values.password);
+    onSubmit: values => {
+      authenticate(values.email, values.password);
     },
   });
 
   return (
     <div className="w-3/4 mx-auto">
-      <h3>Already have an account? </h3>
+      <h3>Create an account</h3>
       <form className='mt-6' onSubmit={formik.handleSubmit}>
+        <div className='py-2'>
+          <label className="block" htmlFor="name">Complete Name:</label>
+          <input className="input-field"
+            id="name"
+            name="name"
+            type="text"
+            placeholder="name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name} />
+        </div>
         <div className='py-2'>
           <label className="block" htmlFor="email">E-mail:</label>
           <input className="input-field"
@@ -54,13 +67,21 @@ export default function SignIn() {
             onBlur={formik.handleBlur}
             value={formik.values.password} />
         </div>
-        <div className="flex items-start space-x-5 py-2">
-          <button className="btn bg-gray-500 hover:bg-gray-700" type="submit">
-            Sign In
+        <div className="py-2">
+          <label className="block" htmlFor="confirmPassword">Confirm Password:</label>
+          <input className="input-field"
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="*******"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.confirmPassword} />
+        </div>
+        <div class="flex items-start space-x-5 py-2">
+          <button class="btn bg-gray-500 hover:bg-gray-700" type="submit">
+            Sign Up
           </button>
-          <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-            Forgot Password?
-          </a>
         </div>
       </form>
     </div>

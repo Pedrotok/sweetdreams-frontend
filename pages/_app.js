@@ -4,6 +4,8 @@ import MainFooter from 'components/mainFooter';
 import data from 'data';
 import Context from 'Context';
 
+import { init } from 'lib/axios';
+
 import 'styles/global.css';
 
 class MainApp extends App {
@@ -14,6 +16,7 @@ class MainApp extends App {
       user: null,
       products: [],
     };
+    init();
   }
 
   addProduct = (product, callback) => {

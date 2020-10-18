@@ -1,12 +1,7 @@
 import Context from "Context";
 import SignIn from "components/signIn"
+import SignUp from "components/signUp"
 import { useRouter } from 'next/router'
-
-const registerDiv = (
-  <div className="flex-1">
-    oi nhenhenzinhazinha2oi nhenhenzinhazinha2oi nhenhenzinhazinha2oi
-  </div>
-);
 
 const login = () => {
   const { username, password } = this.state;
@@ -25,12 +20,12 @@ export default function Login() {
     <Context.Consumer>
       {values =>
         !values.user ? (
-          <div className="flex flex-wrap space-x-8 pb-5">
+          <div className="py-10 divide-x divide-gray-400 flex flex-wrap pb-5 border-2">
             <div className="flex-1 ">
               <SignIn />
             </div>
             <div className="flex-1 ">
-              {registerDiv}
+              <SignUp />
             </div>
           </div>
         ) : (
