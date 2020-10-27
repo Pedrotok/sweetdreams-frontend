@@ -4,7 +4,8 @@ import MainFooter from 'components/mainFooter';
 import data from 'data';
 import Context from 'Context';
 
-import { init } from 'lib/axios';
+import { init as initAxios } from 'lib/axios';
+import { logout as libLogout } from 'lib/user';
 
 import 'styles/global.css';
 
@@ -16,7 +17,7 @@ class MainApp extends App {
       user: null,
       products: [],
     };
-    init();
+    initAxios();
   }
 
   addProduct = (product, callback) => {
@@ -68,6 +69,15 @@ class MainApp extends App {
     this.clearCart();
   };
 
+  setUser = (userData) => {
+    this.setState({ user: userData });
+  }
+
+  logout = () => {
+    libLogout();
+    this.setState({ user: null });
+  }
+
   componentDidMount() {
     let user = localStorage.getItem('user');
     let products = localStorage.getItem('products');
@@ -80,21 +90,6 @@ class MainApp extends App {
     this.setState({ user, products, cart });
   }
 
-  login = (usn, pwd) => {
-    let user = data.users.find((u) => u.username === usn && u.password === pwd);
-    if (user) {
-      this.setState({ user });
-      localStorage.setItem('user', JSON.stringify(user));
-      return true;
-    }
-    return false;
-  };
-
-  logout = () => {
-    this.setState({ user: null });
-    localStorage.removeItem('user');
-  };
-
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -103,10 +98,10 @@ class MainApp extends App {
           ...this.state,
           removeFromCart: this.removeFromCart,
           addToCart: this.addToCart,
-          login: this.login,
-          addProduct: this.addProduct,
           clearCart: this.clearCart,
+          addProduct: this.addProduct,
           checkout: this.checkout,
+          setUser: this.setUser,
         }}
       >
         <NavBar

@@ -13,7 +13,7 @@ const validate = values => {
   return errors;
 };
 
-export default function SignIn() {
+export default function SignIn({ setUser }) {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -21,7 +21,8 @@ export default function SignIn() {
     },
     validate,
     onSubmit: async values => {
-      await authenticate(values.email, values.password);
+      const response = await authenticate(values.email, values.password);
+      setUser(response.user_data);
     },
   });
 
