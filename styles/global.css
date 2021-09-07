@@ -47,6 +47,10 @@
   .footer-link:hover {
     @apply text-happyyellow text-opacity-100 underline;
   }
+
+  .error-message {
+    @apply text-xs text-red-600;
+  }
 }
 
 @layer utilities {
