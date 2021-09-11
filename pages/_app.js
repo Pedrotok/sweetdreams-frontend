@@ -29,13 +29,10 @@ class MainApp extends App {
 
   addToCart = (cartItem) => {
     let cart = this.state.cart;
-    if (cart[cartItem.id]) {
-      cart[cartItem.id].amount += cartItem.amount;
+    if (cart[cartItem._id]) {
+      cart[cartItem._id].amount += cartItem.amount;
     } else {
-      cart[cartItem.id] = cartItem;
-    }
-    if (cart[cartItem.id].amount > cart[cartItem.id].product.stock) {
-      cart[cartItem.id].amount = cart[cartItem.id].product.stock;
+      cart[cartItem._id] = cartItem;
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     this.setState({ cart });
