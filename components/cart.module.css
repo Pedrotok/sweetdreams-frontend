@@ -1,0 +1,14 @@
+@layer components {
+  .cartLink {
+    @apply block mr-4 underline inline-block text-indigo text-s tracking-wider opacity-75 font-medium m-auto mt-2;
+  }
+  .cartLink:hover {
+    @apply text-nicered underline opacity-100;
+  }
+}
+
+@layer utilities {
+  .text-s {
+    font-size: 13px;
+  }
+}

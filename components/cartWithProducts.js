@@ -8,6 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import CartItem from 'components/cartItem';
+import CartAmount from 'components/cartAmount';
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -18,32 +21,40 @@ export default function CartWithProducts(props) {
   const classes = useStyles();
   const { cart } = props.value;
 
-  const rows = Object.keys(cart).map(key => ({ id: key, ...cart[key] }))
+  const rows = cart;
 
   return (
-    <div className="m-12 px-12">
-        <TableContainer component={Paper}>
+    <div className="m-12 px-24 h-auto">
+      <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
-            <TableHead>
+          <TableHead>
             <TableRow>
-                <TableCell>Produto</TableCell>
-                <TableCell align="right">Quantidade</TableCell>
-                <TableCell align="right">Preço</TableCell>
+              <TableCell>Produto</TableCell>
+              <TableCell align="right">Quantidade</TableCell>
+              <TableCell align="right">Preço</TableCell>
             </TableRow>
-            </TableHead>
-            <TableBody>
+          </TableHead>
+          <TableBody>
             {rows.map((row) => (
-                <TableRow key={row.name}>
-                    <TableCell component="th" scope="row">
-                        {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.amount}</TableCell>
-                    <TableCell align="right">{row.price}</TableCell>
-                </TableRow>
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  <CartItem row={row} />
+                </TableCell>
+                <TableCell align="right">
+                  <CartAmount
+                    product={row}
+                    updateCart={props.value.updateItemOnCart}
+                    removeFromCart={props.value.removeFromCart}
+                  />
+                </TableCell>
+                <TableCell align="right">
+                  R$ {(row.price * row.amount).toFixed(2)}
+                </TableCell>
+              </TableRow>
             ))}
-            </TableBody>
+          </TableBody>
         </Table>
-        </TableContainer>
+      </TableContainer>
     </div>
   );
 }

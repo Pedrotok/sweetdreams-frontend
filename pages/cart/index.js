@@ -6,7 +6,7 @@ export default function Cart(props) {
   return (
     <Context.Consumer>
       {value =>   
-        Object.keys(value.cart).length === 0 ?
+        value.cart.length === 0 ?
         <EmptyCart />
         :
         <CartWithProducts value={value} />

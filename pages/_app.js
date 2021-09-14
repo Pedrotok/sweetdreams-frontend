@@ -13,7 +13,7 @@ class MainApp extends App {
   constructor(props) {
     super(props);
     this.state = {
-      cart: {},
+      cart: [],
       user: null,
       products: [],
     };
@@ -29,24 +29,63 @@ class MainApp extends App {
 
   addToCart = (cartItem) => {
     let cart = this.state.cart;
-    if (cart[cartItem._id]) {
-      cart[cartItem._id].amount += cartItem.amount;
-    } else {
-      cart[cartItem._id] = cartItem;
+    let index = -1;
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i]._id === cartItem._id && cart[i].size === cartItem.size) {
+        index = i;
+        break;
+      }
     }
+
+    if (index >= 0) {
+      cart[index].amount += cartItem.amount;
+    } else {
+      cart.push(cartItem);
+    }
+
     localStorage.setItem('cart', JSON.stringify(cart));
     this.setState({ cart });
   };
 
-  removeFromCart = (cartItemId) => {
+  updateItemOnCart = (cartItem) => {
     let cart = this.state.cart;
-    delete cart[cartItemId];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    this.setState({ cart });
+    let index = -1;
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i]._id === cartItem._id && cart[i].size === cartItem.size) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index >= 0) {
+      cart[index] = cartItem;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.setState({ cart });
+    }
+  };
+
+  removeFromCart = (cartItem) => {
+    let cart = this.state.cart;
+    let index = -1;
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i]._id === cartItem._id && cart[i].size === cartItem.size) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index >= 0) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.setState({ cart });
+    }
   };
 
   clearCart = () => {
-    let cart = {};
+    let cart = [];
     localStorage.removeItem('cart');
     this.setState({ cart });
   };
@@ -68,12 +107,12 @@ class MainApp extends App {
 
   setUser = (userData) => {
     this.setState({ user: userData });
-  }
+  };
 
   logout = () => {
     libLogout();
     this.setState({ user: null });
-  }
+  };
 
   componentDidMount() {
     let user = localStorage.getItem('user');
@@ -82,7 +121,7 @@ class MainApp extends App {
 
     products = products ? JSON.parse(products) : data.initProducts;
     user = user ? JSON.parse(user) : null;
-    cart = cart ? JSON.parse(cart) : {};
+    cart = cart ? JSON.parse(cart) : [];
 
     this.setState({ user, products, cart });
   }
@@ -99,11 +138,12 @@ class MainApp extends App {
           addProduct: this.addProduct,
           checkout: this.checkout,
           setUser: this.setUser,
+          updateItemOnCart: this.updateItemOnCart,
         }}
       >
         <NavBar
           user={this.state.user}
-          cartSize={Object.keys(this.state.cart).length}
+          cartSize={this.state.cart.length}
           logout={() => this.logout()}
         />
         <Component {...pageProps} />
