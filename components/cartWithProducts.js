@@ -22,6 +22,7 @@ export default function CartWithProducts(props) {
   const { cart } = props.value;
 
   const rows = cart;
+  const totalCost = cart.reduce((acc, item) => acc + item.amount * item.price, 0)
 
   return (
     <div className="m-12 px-24 h-auto">
@@ -36,7 +37,7 @@ export default function CartWithProducts(props) {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.name}>
+              <TableRow key={row.name + row.size}>
                 <TableCell component="th" scope="row">
                   <CartItem row={row} />
                 </TableCell>
@@ -55,6 +56,18 @@ export default function CartWithProducts(props) {
           </TableBody>
         </Table>
       </TableContainer>
+      <div className='flex flex-col justify-end my-5'>
+        <p className="self-end">
+          Total: R$ {totalCost.toFixed(2)}
+        </p>
+
+        <button
+              className="self-end btn mt-2 bg-blue-500 hover:bg-blue-700 text-white"
+              onClick={() => {}}
+            >
+              Finalizar Compra
+            </button>
+      </div>
     </div>
   );
 }
