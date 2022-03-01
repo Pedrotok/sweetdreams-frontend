@@ -106,6 +106,7 @@ class MainApp extends App {
   };
 
   setUser = (userData) => {
+    localStorage.setItem('user', JSON.stringify(userData));
     this.setState({ user: userData });
   };
 

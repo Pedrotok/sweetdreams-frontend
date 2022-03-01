@@ -49,7 +49,7 @@ function NavBar(props) {
             props.logout();
           }}
         >
-          LOGOUT
+          Logout
         </a>
       )}
     </div>
