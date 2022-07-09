@@ -8,150 +8,87 @@ import { init as initAxios } from 'lib/axios';
 import { logout as libLogout } from 'lib/user';
 
 import 'styles/global.css';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+import { CardTravelTwoTone } from '@material-ui/icons';
 
-class MainApp extends App {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cart: [],
-      user: null,
-      products: [],
-    };
-    initAxios();
-  }
+export const MainApp = ({ Component, pageProps }) => {
+  const [user, setUser] = useLocalStorage("user", null);
+  const [products, setProducts] = useLocalStorage("products", []);
+  const [cart, setCart] = useLocalStorage("cart", []);
 
-  addProduct = (product, callback) => {
-    let products = this.state.products.slice();
-    products.push(product);
-    localStorage.setItem('products', JSON.stringify(products));
-    this.setState({ products }, () => callback && callback());
-  };
+  initAxios();
 
-  addToCart = (cartItem) => {
-    let cart = this.state.cart;
-    let index = -1;
-
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i]._id === cartItem._id && cart[i].size === cartItem.size) {
-        index = i;
-        break;
-      }
-    }
+  const addToCart = (cartItem) => {
+    const tempCart = cart;
+    const index = tempCart.findIndex((item) => item._id === cartItem._id && item.size === cartItem.size);
 
     if (index >= 0) {
-      cart[index].amount += cartItem.amount;
+      tempCart[index].amount += cartItem.amount;
     } else {
-      cart.push(cartItem);
+      tempCart.push(cartItem);
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    this.setState({ cart });
+    setCart(tempCart);
   };
 
-  updateItemOnCart = (cartItem) => {
-    let cart = this.state.cart;
-    let index = -1;
-
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i]._id === cartItem._id && cart[i].size === cartItem.size) {
-        index = i;
-        break;
-      }
+  const updateItemOnCart = (cartItem) => {
+    const tempCart = cart;
+    const index = tempCart.findIndex((item) => item._id === cartItem._id && item.size === cartItem.size);
+    if (index >= 0) {
+      tempCart[index] = cartItem;
+      setCart(tempCart);
     }
+  };
+
+  const removeFromCart = (cartItem) => {
+    const tempCart = cart;
+    const index = tempCart.findIndex((item) => item._id === cartItem._id && item.size === cartItem.size);
 
     if (index >= 0) {
-      cart[index] = cartItem;
-      localStorage.setItem('cart', JSON.stringify(cart));
-      this.setState({ cart });
+      tempCart.splice(index, 1);
+      setCart(tempCart);
     }
   };
 
-  removeFromCart = (cartItem) => {
-    let cart = this.state.cart;
-    let index = -1;
-
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i]._id === cartItem._id && cart[i].size === cartItem.size) {
-        index = i;
-        break;
-      }
-    }
-
-    if (index >= 0) {
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      this.setState({ cart });
-    }
+  const clearCart = () => {
+    setCart([]);
   };
 
-  clearCart = () => {
-    let cart = [];
-    localStorage.removeItem('cart');
-    this.setState({ cart });
-  };
-
-  checkout = () => {
-    if (!this.state.user) {
+  const checkout = () => {
+    if (!user) {
       return;
     }
-    const cart = this.state.cart;
-    const products = this.state.products.map((p) => {
-      if (cart[p.name]) {
-        p.stock = p.stock - cart[p.name].amount;
-      }
-      return p;
-    });
-    this.setState({ products });
     this.clearCart();
   };
 
-  setUser = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    this.setState({ user: userData });
-  };
-
-  logout = () => {
+  const logout = () => {
     libLogout();
-    this.setState({ user: null });
+    setUser(null);
   };
 
-  componentDidMount() {
-    let user = localStorage.getItem('user');
-    let products = localStorage.getItem('products');
-    let cart = localStorage.getItem('cart');
+  console.log(' fsdfsdfsfs ', cart);
 
-    products = products ? JSON.parse(products) : data.initProducts;
-    user = user ? JSON.parse(user) : null;
-    cart = cart ? JSON.parse(cart) : [];
-
-    this.setState({ user, products, cart });
-  }
-
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <Context.Provider
-        value={{
-          ...this.state,
-          removeFromCart: this.removeFromCart,
-          addToCart: this.addToCart,
-          clearCart: this.clearCart,
-          addProduct: this.addProduct,
-          checkout: this.checkout,
-          setUser: this.setUser,
-          updateItemOnCart: this.updateItemOnCart,
-        }}
-      >
-        <NavBar
-          user={this.state.user}
-          cartSize={this.state.cart.length}
-          logout={() => this.logout()}
-        />
-        <Component {...pageProps} />
-        <MainFooter />
-      </Context.Provider>
-    );
-  }
+  return (
+    <Context.Provider
+      value={{
+        cart,
+        removeFromCart,
+        addToCart,
+        clearCart,
+        checkout,
+        setUser,
+        updateItemOnCart,
+      }}
+    >
+      <NavBar
+        user={user}
+        cartSize={cart.length}
+        logout={() => logout()}
+      />
+      <Component {...pageProps} />
+      <MainFooter />
+    </Context.Provider>
+  );
 }
 
 export default MainApp;
