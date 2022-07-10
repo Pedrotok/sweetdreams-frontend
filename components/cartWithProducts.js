@@ -7,9 +7,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { TextField } from '@material-ui/core';
 
 import CartItem from 'components/cartItem';
 import CartAmount from 'components/cartAmount';
+
+import { getDeliveryInfo } from 'lib/delivery';
+
+import styles from './cart.module.css';
 
 const useStyles = makeStyles({
   table: {
@@ -22,7 +27,10 @@ export default function CartWithProducts(props) {
   const { cart } = props.value;
 
   const rows = cart;
-  const totalCost = cart.reduce((acc, item) => acc + item.amount * item.price, 0)
+  const totalCost = cart.reduce(
+    (acc, item) => acc + item.amount * item.price,
+    0
+  );
 
   return (
     <div className="m-12 px-24 h-auto">
@@ -56,17 +64,30 @@ export default function CartWithProducts(props) {
           </TableBody>
         </Table>
       </TableContainer>
-      <div className='flex flex-col justify-end my-5'>
-        <p className="self-end">
-          Total: R$ {totalCost.toFixed(2)}
-        </p>
-
+      <div className="flex flex-col justify-end my-5">
+        <div className="flex flex-col self-end my-4">
+          <TextField
+            id="zipcode"
+            type="text"
+            placeholder="CEP"
+            variant="outlined"
+            size="small"
+          />
+          <a
+            href="#"
+            onClick={() => getDeliveryInfo('70852540', 1)}
+            className={styles.zipCodeLink}
+          >
+            Calcular frete
+          </a>
+        </div>
+        <p className="self-end my-2">Total: R$ {totalCost.toFixed(2)}</p>
         <button
-              className="self-end btn mt-2 bg-blue-500 hover:bg-blue-700 text-white"
-              onClick={() => {}}
-            >
-              Finalizar Compra
-            </button>
+          className="self-end btn mt-2 bg-blue-500 hover:bg-blue-700 text-white"
+          onClick={() => {}}
+        >
+          Finalizar Compra
+        </button>
       </div>
     </div>
   );

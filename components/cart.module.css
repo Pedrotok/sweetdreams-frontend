@@ -5,6 +5,13 @@
   .cartLink:hover {
     @apply text-nicered underline opacity-100;
   }
+
+  .zipCodeLink {
+    @apply self-end block underline inline-block text-indigo text-s tracking-wider opacity-75 font-medium mt-1;
+  }
+  .zipCodeLink:hover {
+    @apply text-nicered underline opacity-100;
+  }
 }
 
 @layer utilities {
