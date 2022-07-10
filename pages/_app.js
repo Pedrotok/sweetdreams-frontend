@@ -66,8 +66,6 @@ export const MainApp = ({ Component, pageProps }) => {
     setUser(null);
   };
 
-  console.log(' fsdfsdfsfs ', cart);
-
   return (
     <Context.Provider
       value={{
