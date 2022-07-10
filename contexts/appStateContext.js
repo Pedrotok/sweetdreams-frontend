@@ -56,6 +56,7 @@ export const AppStateProvider = ({ children }) => {
         addToCart,
         clearCart,
         checkout,
+        user,
         setUser,
         updateItemOnCart,
       }}>

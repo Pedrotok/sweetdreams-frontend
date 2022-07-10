@@ -13,7 +13,7 @@ export default function Login() {
     if (isSignedIn()) {
       router.push('/');
     }
-  });
+  }, []);
 
   return (
     <div className="py-10 divide-x divide-gray-400 flex flex-wrap pb-5 border-2">
