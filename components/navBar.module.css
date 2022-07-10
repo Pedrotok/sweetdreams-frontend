@@ -1,3 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
   .menuItem {
     @apply block mr-4 inline-block text-indigo text-s tracking-wider opacity-75 font-medium uppercase;

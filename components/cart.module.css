@@ -1,3 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
   .cartLink {
     @apply block mr-4 underline inline-block text-indigo text-s tracking-wider opacity-75 font-medium m-auto mt-2;

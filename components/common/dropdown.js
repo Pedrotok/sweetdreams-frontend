@@ -2,9 +2,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { useState } from 'react';
 
 export default function Dropdown(props) {
-  const [option, setOption] = React.useState('');
+  const [option, setOption] = useState('');
 
   const handleChange = (event) => {
     setOption(event.target.value);
