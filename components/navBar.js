@@ -6,8 +6,19 @@ import ShoppingCart from 'components/common/shoppingCart';
 
 import styles from './navBar.module.css';
 import MoonIcon from 'public/icons/moonIcon';
+import { useAppState } from 'hooks/useAppState';
+import { logout as libLogout } from 'lib/user';
 
-function NavBar(props) {
+const NavBar = () => {
+  const { user, cart, setUser } = useAppState();
+
+  const cartSize = cart.length;
+
+  const logout = () => {
+    libLogout();
+    setUser(null);
+  };
+
   const searchBar = (
     <div className="flex border-b-2 border-gray-200 h-6">
       <input
@@ -17,7 +28,7 @@ function NavBar(props) {
       />
       <button
         className="bg-white w-auto flex justify-end items-center text-blue-500 p-2 hover:text-blue-400"
-        onClick={() => {}}
+        onClick={() => { }}
       >
         <Search />
       </button>
@@ -32,12 +43,12 @@ function NavBar(props) {
       <Link href="/products">
         <a className={styles.menuItem}>Products</a>
       </Link>
-      {props.user && props.user.accessLevel < 1 && (
+      {user && user.accessLevel < 1 && (
         <Link href="/add-products">
           <a className={styles.menuItem}>Admin</a>
         </Link>
       )}
-      {!props.user ? (
+      {!user ? (
         <Link href="/login">
           <a className={styles.menuItem}>Login</a>
         </Link>
@@ -46,26 +57,13 @@ function NavBar(props) {
           className={styles.menuItem}
           onClick={(e) => {
             e.preventDefault();
-            props.logout();
+            logout();
           }}
         >
           Logout
         </a>
       )}
     </div>
-  );
-
-  const cartIcon = (
-    <Link href="/cart">
-      <a className="border-l-2 border-gray-200 px-4 ml-4">
-        <ShoppingCartOutlinedIcon />
-        {props.cartSize > 0 && (
-          <span className="tag is-primary" style={{ marginLeft: '5px' }}>
-            {props.cartSize}
-          </span>
-        )}
-      </a>
-    </Link>
   );
 
   return (
@@ -76,7 +74,7 @@ function NavBar(props) {
         <div className=" flex items-center ml-auto">
           {navBarLinks}
           {/* {searchBar} */}
-          <ShoppingCart cartSize={props.cartSize} />
+          <ShoppingCart cartSize={cartSize} />
         </div>
       </div>
     </nav>

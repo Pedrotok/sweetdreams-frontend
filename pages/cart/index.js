@@ -1,16 +1,20 @@
-import Context from 'Context';
 import EmptyCart from 'components/emptyCart';
 import CartWithProducts from 'components/cartWithProducts';
+import { useAppState } from 'hooks/useAppState';
 
-export default function Cart(props) {
+const Cart = () => {
+  const { cart, updateItemOnCart, removeFromCart } = useAppState();
+
   return (
-    <Context.Consumer>
-      {value =>   
-        value.cart.length === 0 ?
-        <EmptyCart />
-        :
-        <CartWithProducts value={value} />
-      }
-    </Context.Consumer>
+    cart.length === 0 ?
+      <EmptyCart />
+      :
+      <CartWithProducts
+        cart={cart}
+        updateItemOnCart={updateItemOnCart}
+        removeFromCart={removeFromCart}
+      />
   );
 }
+
+export default Cart;

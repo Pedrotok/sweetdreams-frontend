@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 export default function CartWithProducts(props) {
   const classes = useStyles();
-  const { cart } = props.value;
+  const { cart, updateItemOnCart, removeFromCart } = props;
 
   const rows = cart;
   const totalCost = cart.reduce((acc, item) => acc + item.amount * item.price, 0)
@@ -44,8 +44,8 @@ export default function CartWithProducts(props) {
                 <TableCell align="right">
                   <CartAmount
                     product={row}
-                    updateCart={props.value.updateItemOnCart}
-                    removeFromCart={props.value.removeFromCart}
+                    updateCart={updateItemOnCart}
+                    removeFromCart={removeFromCart}
                   />
                 </TableCell>
                 <TableCell align="right">
@@ -62,11 +62,11 @@ export default function CartWithProducts(props) {
         </p>
 
         <button
-              className="self-end btn mt-2 bg-blue-500 hover:bg-blue-700 text-white"
-              onClick={() => {}}
-            >
-              Finalizar Compra
-            </button>
+          className="self-end btn mt-2 bg-blue-500 hover:bg-blue-700 text-white"
+          onClick={() => { }}
+        >
+          Finalizar Compra
+        </button>
       </div>
     </div>
   );
